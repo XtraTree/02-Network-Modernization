@@ -331,10 +331,10 @@ Enterprise network modernization patterns covering MPLS to SD-WAN transformation
 **This repo answers: 🎯 HOW to secure the network (wherever workloads run)**
 
 **Layers of Security**:
-- 📍 [REPO 1: Where workloads run](../01-Hybrid-Multi-Cloud-Blueprints) → Deployment architecture
+- 📍 [REPO 1: Where workloads run](https://github.com/XtraTree/01-Hybrid-Multi-Cloud-Blueprints) → Deployment architecture
 - **🛡️ REPO 2: How network is secured** → This repo (network-layer)
-- 🔐 [REPO 3: How identity is verified](../03-Zero-Trust-Security) → Identity-layer
-- ⚖️ [REPO 4: How policies are enforced](../04-Cloud-Native-Governance) → Governance
+- 🔐 [REPO 3: How identity is verified](https://github.com/XtraTree/03-Zero-Trust-Security) → Identity-layer
+- ⚖️ [REPO 4: How policies are enforced](https://github.com/XtraTree/04-Cloud-Native-Governance) → Governance
 
 **Example integration**: Hybrid architecture (REPO 1) needs:
 1. Secure network (REPO 2) → Hybrid network design
@@ -370,7 +370,7 @@ Enterprise network modernization patterns covering MPLS to SD-WAN transformation
 **If you need zero-trust** 🔒:
 1. 👆 Read [Full Zero-Trust Pattern](#pattern-3️⃣-full-zero-trust-identity-centric-)
 2. 📚 See [Healthcare Case Study](./CASE_STUDIES/healthcare.md)
-3. 🔗 Link to [REPO 3 Zero-Trust Security](../03-Zero-Trust-Security)
+3. 🔗 Link to [REPO 3 Zero-Trust Security](https://github.com/XtraTree/03-Zero-Trust-Security)
 4. 📋 Check [IMPLEMENTATION/](./IMPLEMENTATION/) deployment
 
 </div>
@@ -387,7 +387,7 @@ Enterprise network modernization patterns covering MPLS to SD-WAN transformation
 
 **If you want integrated architecture** 🔗:
 1. 🔗 See [How This Repo Connects](#-how-this-repo-connects-to-the-other-repos)
-2. 🔐 Jump to [REPO 3](../03-Zero-Trust-Security) or ⚖️ [REPO 4](../04-Cloud-Native-Governance)
+2. 🔐 Jump to [REPO 3](https://github.com/XtraTree/03-Zero-Trust-Security) or ⚖️ [REPO 4](https://github.com/XtraTree/04-Cloud-Native-Governance)
 
 </div>
 
