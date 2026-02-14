@@ -345,14 +345,14 @@ Each network modernization pattern follows this structured model:
 │   Internet       │
 └────────┬─────────┘
          │
-    ┌────▼────┐
+    ┌────▼─── ─┐
     │ Perimeter
     │ Firewall │
-    └────┬────┘
+    └────┬── ──┘
          │
     ┌────▼──────────┬──────────────┬──────────┐
-    │                │              │          │
-┌───▼────┐    ┌─────▼────┐  ┌─────▼────┐  ┌──▼───┐
+    │               │              │          │
+┌───▼─── ─┐    ┌─────▼────┐  ┌─────▼────┐  ┌──▼───┐
 │ User    │    │ App      │  │ Database │  │Cache │
 │ Segment │◄──►│ Segment  │◄─┤ Segment  │◄─┤Seg   │
 └─────────┘    └──────────┘  └──────────┘  └──────┘
@@ -369,13 +369,13 @@ Client                    Service
 │Cert    │ with Subject │ Cert    │
 │ ID     │              │ Identity│
 └────────┘              └────┬────┘
-                              │
+                             │
                          Authorized?
-                              │
-                         ┌────▼─────┐
-                         │ Grant     │
-                         │ Access    │
-                         └───────────┘
+                             │
+                        ┌────▼─────┐
+                        │ Grant    │
+                        │ Access   │
+                        └──────────┘
 ```
 
 ### Hybrid Pattern: Legacy + Zero-Trust
@@ -384,7 +384,7 @@ Legacy Network          Zero-Trust Network
 ┌──────────────┐       ┌─────────────────┐
 │ App 1        │       │ Microservice A  │
 │ App 2        │       │ Microservice B  │
-│ (Perim-Based)│◄──►   │ (Identity-Based)│
+│ (Perim-Based)│ ◄──►  │ (Identity-Based)│
 └──────────────┘  GW   └─────────────────┘
                  (Auth Translation)
 ```
