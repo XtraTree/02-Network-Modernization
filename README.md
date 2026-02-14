@@ -403,7 +403,7 @@ Legacy Network          Zero-Trust Network
 - ✅ What's the cutover strategy?
 
 ---
-🛡️ Jump to [REPO 1](https://github.com/XtraTree/01-Hybrid-Multi-Cloud-Blueprints), [REPO 3](https://github.com/XtraTree/03-Zero-Trust-Security), or [REPO 4](https://github.com/XtraTree/04-Cloud-Native-Governance)
+🛡️ Jump to [REPO 1](https://github.com/XtraTree/01-Hybrid-Multi-Cloud-Blueprints), [REPO 3](https://github.com/XtraTree/03-Zero-Trust-Security), [REPO 4](https://github.com/XtraTree/04-Cloud-Native-Governance), or [REPO 0](https://github.com/XtraTree/00-Architecture-Principles)
 ---
 ## 🤝 Contributing
 
