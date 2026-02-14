@@ -1,4 +1,3 @@
-Enterprise network modernization patterns covering MPLS to SD-WAN transformation and data center optimization/relocation strategies.
 # 🔐 Network Modernization: Zero-Trust Architecture
 
 > **Strategic Question**: How do you secure a network when the perimeter no longer exists?
@@ -10,75 +9,207 @@ Enterprise network modernization patterns covering MPLS to SD-WAN transformation
 
 ---
 
-## 🎯 Why This Matters
+## 📖 About
 
-**Traditional Network Security (Perimeter-Based)** ❌:
-- "Trust everything inside the firewall"
-- Firewall rules accumulate over 10 years (become unmaintainable)
+Enterprise network modernization patterns covering MPLS to SD-WAN transformation and data center optimization/relocation strategies.
+
+**Problem**: Traditional perimeter-based security no longer works:
+- Firewalls accumulate 10+ years of legacy rules (unmaintainable)
 - Breach inside firewall = unrestricted lateral movement
-- Hard to remediate (whole network exposed)
+- Network changes take weeks (slow innovation)
+- Operator burnout (managing complexity)
 
-**Zero-Trust Network Security** ✅:
-- "Assume breach is happening now"
-- Every access is authenticated and authorized
-- Lateral movement is prevented by architecture
-- Breach containment is automatic
+**Solution**: Zero-trust network architecture where every access is authenticated, authorized, and logged.
 
-**🔄 The shift**: Perimeter security → Identity-centric security
+**It is not code-centric. It is architecture-centric.**
+
+---
+
+## 🎯 Portfolio Structure
+
+Each network modernization pattern follows this structured model:
+
+1. **Business Context** — Network transformation drivers
+2. **Current-State Assessment** — Firewall rules, network baseline, constraints
+3. **Target Architecture Blueprint** — Zero-trust network design
+4. **Governance & Control Model** — Network policies, micro-segmentation
+5. **Process Flow Design** — SD-WAN migration, rule rationalization
+6. **Risk & Trade-off Analysis** — Cutover strategy, legacy system handling
+7. **Reusable Architecture Patterns** — Perimeter optimization, micro-segmentation, full zero-trust
+
+---
+
+## 💡 Architectural Philosophy
+
+| Principle | Applied Here |
+|-----------|---|
+| **Strategic Focus** | Network strategy driven by security outcomes, not technology |
+| **Embedded Governance** | Security policies embedded in network design, not firewall rules |
+| **Process Discipline** | Rule rationalization & segmentation processes enable scale |
+| **Structural Security** | Zero-trust built into architecture, not bolted on as features |
+| **Intentional Complexity** | Network complexity reduced through micro-segmentation design |
 
 ---
 
 ## 📊 Four Network Modernization Patterns
 
 ### Pattern 1️⃣: Perimeter Optimization 🧹
+
+**When**: Migrating firewall platforms (ASA → FortiGate) or need quick wins
+
 | Aspect | Detail |
 |--------|--------|
 | **What** | Clean up existing firewall, remove legacy rules |
-| **When** | Migrating firewalls (ASA → FortiGate, etc.) |
+| **Timeline** | 8-12 weeks |
 | **Cost** | $$ (one-time cleanup) |
-| **Time** | 8-12 weeks |
+| **Complexity** | Low (no architecture change) |
 | **Best For** | Quick wins without full rearchitect |
 
+**📊 Current-State Assessment**:
+- 500+ firewall rules (10+ years old)
+- Rules nobody understands
+- Outdated security requirements
+- Performance degradation
+
+**🎯 Target Architecture**:
+- Consolidated, documented firewall rules
+- 30-50% rule reduction
+- Clear purpose for remaining rules
+- Performance improvements
+
+**🔄 Process Flow**:
+1. Audit all firewall rules (what do they actually do?)
+2. Identify obsolete rules (old projects, retired systems)
+3. Consolidate overlapping rules
+4. Test & validate consolidated rules
+5. Deploy to production
+
 **Result**: Rules ↓ 30-50%, Performance ↑, Still perimeter-based
+
+**⚠️ Trade-offs**:
+- No architectural change (still perimeter-based)
+- Doesn't address lateral movement risk
+- Legacy access patterns remain
 
 ---
 
 ### Pattern 2️⃣: Micro-Segmentation (Early Zero-Trust) 🎯
+
+**When**: Need better security without full rearchitect, mixed legacy/modern workloads
+
 | Aspect | Detail |
 |--------|--------|
 | **What** | Divide network into segments with explicit policies |
-| **When** | Need better security without full rearchitect |
+| **Timeline** | 12-16 weeks |
 | **Cost** | $$$ (network redesign, enforcement) |
-| **Time** | 12-16 weeks |
+| **Complexity** | Medium (partial redesign) |
 | **Best For** | Mixed legacy and modern workloads |
 
+**📊 Current-State Assessment**:
+- Flat network (everything can talk to everything)
+- Lateral movement risk (breach = full network compromised)
+- Slow security reviews (everything interconnected)
+- Compliance gaps (no network isolation)
+
+**🎯 Target Architecture**:
+- Network divided into security zones (database tier, app tier, user tier)
+- Explicit policies between segments
+- No lateral movement without approval
+- Compliance-aligned segmentation
+
+**🔄 Process Flow**:
+1. Identify security zones (by function, criticality, compliance)
+2. Map traffic flows between zones
+3. Design firewall policies per zone boundary
+4. Implement with VLAN or network segmentation
+5. Monitor & optimize policies
+
 **Result**: Lateral movement ↓ 80%, Blast radius contained
+
+**⚠️ Trade-offs**:
+- Network operational complexity increases
+- Legitimate cross-segment traffic requires explicit rules
+- Legacy applications may not fit segments cleanly
 
 ---
 
 ### Pattern 3️⃣: Full Zero-Trust (Identity-Centric) 🔒
+
+**When**: Regulatory requirement, highest security, greenfield network
+
 | Aspect | Detail |
 |--------|--------|
 | **What** | Every access requires authentication, every service verifies identity |
-| **When** | Regulatory requirement, highest security, greenfield |
+| **Timeline** | 16-24 weeks |
 | **Cost** | $$$$ (app changes, policy mgmt, observability) |
-| **Time** | 16-24 weeks |
+| **Complexity** | High (architecture redesign) |
 | **Best For** | Healthcare, finance, critical infrastructure |
 
-**Result**: Zero lateral movement, Compliance automated
+**📊 Current-State Assessment**:
+- Perimeter-based security (trust inside firewall)
+- No service-to-service authentication
+- Lateral movement = complete access
+- Insider threat = undetected
+
+**🎯 Target Architecture**:
+- Identity-based (not network-based) access control
+- Every service verifies identity of caller
+- Zero lateral movement (each connection authorized)
+- Insider threat detection (behavior analysis)
+
+**🔄 Process Flow**:
+1. Implement identity verification (mTLS, OAuth2)
+2. Deploy micro-segmentation enforcement (Istio, eBPF)
+3. Establish baseline access (behavioral learning)
+4. Detect anomalies (insider threats)
+5. Respond automatically (restrict anomalous access)
+
+**Result**: Zero lateral movement, Compliance automated, Insider threats detected
+
+**⚠️ Trade-offs**:
+- Significant application changes (add authentication)
+- Operational complexity (manage policies at scale)
+- Performance impact (authentication overhead)
 
 ---
 
 ### Pattern 4️⃣: Hybrid Network (Zero-Trust + Legacy) 🔀
+
+**When**: Large enterprises with mixed workloads, long transition timeline
+
 | Aspect | Detail |
 |--------|--------|
 | **What** | Zero-trust for new systems, legacy access for existing |
-| **When** | Large enterprises with mixed workloads |
+| **Timeline** | Ongoing (6-24 months transition) |
 | **Cost** | $$$ (both systems in parallel) |
-| **Time** | Ongoing (long transition) |
+| **Complexity** | High (managing two models) |
 | **Best For** | Legacy systems that can't change quickly |
 
-**Result**: Gradual migration, Minimal disruption
+**📊 Current-State Assessment**:
+- Large legacy application base
+- New microservices-based apps
+- Both need to coexist
+- Transition must not disrupt operations
+
+**🎯 Target Architecture**:
+- New workloads: Zero-trust (identity-centric)
+- Legacy workloads: Network segmentation
+- Gateway between old & new (identity translation)
+- Gradual migration path
+
+**🔄 Process Flow**:
+1. New workloads → Zero-trust network
+2. Legacy workloads → Micro-segmentation (as transition step)
+3. Gateway converts between models
+4. Gradually migrate legacy to zero-trust
+5. Sunset perimeter as migration completes
+
+**Result**: Gradual migration, Minimal disruption, Controlled risk
+
+**⚠️ Trade-offs**:
+- Operational complexity (manage both models)
+- Transition takes longer (phased approach)
+- Gateway adds latency
 
 ---
 
@@ -88,7 +219,8 @@ Enterprise network modernization patterns covering MPLS to SD-WAN transformation
 <tr>
 <td width="50%">
 
-**Problem** 🚨
+**📊 Current-State Assessment** 🚨
+
 - 500+ firewall rules (10 years old)
 - Complex (nobody understands all)
 - Slow (changes take weeks)
@@ -97,345 +229,199 @@ Enterprise network modernization patterns covering MPLS to SD-WAN transformation
 </td>
 <td width="50%">
 
-**Decision** ✅
-- Micro-segmentation
-- Zero-trust network
-- Network zones with explicit policies
-- Every access logged
+**🎯 Target Architecture** ✅
+
+- 150+ consolidated rules
+- Clear purpose for each rule
+- Changes in 1 day
+- Zero lateral movement
 
 </td>
 </tr>
 </table>
 
-**📈 Quantified Outcomes**:
+**Approach**: Pattern 2 → Pattern 3 (Micro-segmentation → Full Zero-Trust)
 
-| Metric | Before | After | Impact |
-|--------|--------|-------|--------|
-| **Rules** | 500+ | 150 | 🟢 **70% simplification** |
-| **Incident Response** | 2-4 hours | 30-40 min | 🟢 **60% faster** |
-| **Audit Time** | 6 weeks | 2.5 weeks | 🟢 **60% faster** |
-| **Annual Savings** | — | $2.3M | 🟢 **Less complexity, fewer incidents** |
-| **Violations Detected** | Undetectable | Minutes | 🟢 **Rapid detection** |
+**🔄 Process Flow**:
+1. **Phase 1 (Weeks 1-12)**: Perimeter optimization (quick wins)
+2. **Phase 2 (Weeks 13-24)**: Micro-segmentation (by business function)
+3. **Phase 3 (Weeks 25-36)**: Zero-trust enforcement (identity-centric)
+4. **Phase 4 (Weeks 37+)**: Continuous optimization
 
-✅ **Why it worked**: Simpler rules + segmentation = easier to understand and defend
-
----
-
-## 🎲 Decision Framework: Which Pattern For You?
-
-<table>
-<tr>
-<th style="background-color: #D32F2F; color: white">Need</th>
-<th style="background-color: #FF9800; color: white">Optimization</th>
-<th style="background-color: #2196F3; color: white">Micro-Seg</th>
-<th style="background-color: #9C27B0; color: white">Full Zero-Trust</th>
-<th style="background-color: #4CAF50; color: white">Hybrid</th>
-</tr>
-<tr>
-<td><strong>Fast deployment</strong></td>
-<td style="background-color: #FFEBEE">✅✅</td>
-<td style="background-color: #E3F2FD">✅</td>
-<td style="background-color: #F3E5F5">❌</td>
-<td style="background-color: #E8F5E9">✅</td>
-</tr>
-<tr>
-<td><strong>Cost reduction</strong></td>
-<td style="background-color: #FFEBEE">✅</td>
-<td style="background-color: #E3F2FD">✅✅</td>
-<td style="background-color: #F3E5F5">✅</td>
-<td style="background-color: #E8F5E9">Limited</td>
-</tr>
-<tr>
-<td><strong>Legacy compatibility</strong></td>
-<td style="background-color: #FFEBEE">✅✅</td>
-<td style="background-color: #E3F2FD">✅✅</td>
-<td style="background-color: #F3E5F5">❌</td>
-<td style="background-color: #E8F5E9">✅✅</td>
-</tr>
-<tr>
-<td><strong>Regulatory compliance</strong></td>
-<td style="background-color: #FFEBEE">Limited</td>
-<td style="background-color: #E3F2FD">✅✅</td>
-<td style="background-color: #F3E5F5">✅✅</td>
-<td style="background-color: #E8F5E9">✅</td>
-</tr>
-<tr>
-<td><strong>Lateral movement prevention</strong></td>
-<td style="background-color: #FFEBEE">❌</td>
-<td style="background-color: #E3F2FD">✅✅</td>
-<td style="background-color: #F3E5F5">✅✅</td>
-<td style="background-color: #E8F5E9">✅</td>
-</tr>
-<tr>
-<td><strong>Team operational ease</strong></td>
-<td style="background-color: #FFEBEE">✅✅</td>
-<td style="background-color: #E3F2FD">✅</td>
-<td style="background-color: #F3E5F5">Limited</td>
-<td style="background-color: #E8F5E9">✅</td>
-</tr>
-</table>
+**Result**:
+- ✅ Rules reduced 70% (500 → 150)
+- ✅ Change velocity improved 50x (1 week → 1 day)
+- ✅ Security incidents: insider threat detected in 2 hours (vs. 3 days)
+- ✅ Compliance: audit pass rate improved 95% → 100%
 
 ---
 
-## 📊 Pattern Comparison: Detailed Tradeoffs
+## 🔐 Governance & Control Model
 
-### 🧹 Perimeter Optimization
-**Best For**: Organizations optimizing existing infrastructure
+### Network Access Control
+- **Perimeter Opt**: Firewall rules, legacy ACLs
+- **Micro-Seg**: Zone-based policies, segment firewalls
+- **Zero-Trust**: Identity policies, attribute-based access
 
-<div style="background-color: #E8F5E9; padding: 15px; border-radius: 5px; margin: 10px 0">
+### Policy Management
+- **Policy Documentation**: Every rule has business purpose
+- **Policy Automation**: Infrastructure-as-code (Terraform)
+- **Policy Approval**: Change control per security zone
+- **Policy Audit**: Quarterly compliance review
 
-**✅ Pros**:
-- 🟢 Quick wins (rules removed immediately)
-- 🟢 Performance improvement (better firewall)
-- 🟢 Familiar to teams (same model)
-- 🟢 Low disruption (iterative)
-
-</div>
-
-<div style="background-color: #FFEBEE; padding: 15px; border-radius: 5px; margin: 10px 0">
-
-**❌ Cons**:
-- 🔴 Doesn't address lateral movement
-- 🔴 Rules still accumulate (temporary fix)
-- 🔴 Compliance still manual
-
-</div>
-
-**⚠️ When It Fails**: Insider threat or external breach gets past firewall. Entire network exposed.
+### Monitoring & Response
+- **Network Visibility**: Every flow logged & analyzed
+- **Threat Detection**: Anomalies flagged in real-time
+- **Incident Response**: Automated isolation (restrict access)
+- **Compliance Reporting**: Monthly policy compliance report
 
 ---
 
-### 🎯 Micro-Segmentation
-**Best For**: Enterprises needing better security + legacy support
+## 🔄 Implementation Process
 
-<div style="background-color: #E8F5E9; padding: 15px; border-radius: 5px; margin: 10px 0">
+### Phase 1: Assess (Weeks 1-4)
+- [ ] Audit current firewall rules & network
+- [ ] Identify security zones & traffic flows
+- [ ] Assess legacy system constraints
+- [ ] Define compliance requirements
 
-**✅ Pros**:
-- 🟢 Significantly reduces lateral movement (80%)
-- 🟢 Works with existing infrastructure
-- 🟢 Scales better (each segment manageable)
-- 🟢 Compliance improves (visibility)
+### Phase 2: Design (Weeks 5-8)
+- [ ] Select network modernization pattern
+- [ ] Design target network architecture
+- [ ] Define micro-segmentation zones
+- [ ] Plan cutover strategy
 
-</div>
+### Phase 3: Pilot (Weeks 9-20)
+- [ ] Implement pattern on pilot segment
+- [ ] Validate security & performance
+- [ ] Test cutover procedures
+- [ ] Document lessons learned
 
-<div style="background-color: #FFEBEE; padding: 15px; border-radius: 5px; margin: 10px 0">
-
-**❌ Cons**:
-- 🔴 Network becomes more complex
-- 🔴 Management overhead (policy per segment)
-- 🔴 Legacy apps may resist segmentation
-
-</div>
-
-**⚠️ When It Fails**: Too many segments = complexity explosion.
-
----
-
-### 🔒 Full Zero-Trust
-**Best For**: Regulated industries, highest security requirements
-
-<div style="background-color: #E8F5E9; padding: 15px; border-radius: 5px; margin: 10px 0">
-
-**✅ Pros**:
-- 🟢 Zero lateral movement (architecture prevents it)
-- 🟢 Compliance continuous (every access verified)
-- 🟢 Scales without firewall complexity
-- 🟢 Future-ready (cloud, containers, k8s)
-
-</div>
-
-<div style="background-color: #FFEBEE; padding: 15px; border-radius: 5px; margin: 10px 0">
-
-**❌ Cons**:
-- 🔴 Requires identity infrastructure
-- 🔴 Application changes needed
-- 🔴 Observability required
-- 🔴 Team skill gap (identity + network + apps)
-
-</div>
-
-**⚠️ When It Fails**: Apps can't be modified. Identity infrastructure inadequate.
+### Phase 4: Scale (Weeks 21+)
+- [ ] Roll out to next segments
+- [ ] Continuous optimization
+- [ ] Monitoring & alerting
+- [ ] Capability maturation
 
 ---
 
-### 🔀 Hybrid Network
-**Best For**: Large enterprises with mixed new/legacy systems
+## ⚠️ Risk & Trade-off Analysis
 
-<div style="background-color: #E8F5E9; padding: 15px; border-radius: 5px; margin: 10px 0">
+### Risk: Service Disruption During Migration
+**Mitigation**:
+- Pilot on non-critical segment first
+- Have rollback plan ready
+- Monitor closely during cutover
+- Maintain parallel path during transition
 
-**✅ Pros**:
-- 🟢 Gradual migration (no big-bang)
-- 🟢 New systems get zero-trust
-- 🟢 Legacy systems keep working
-- 🟢 Risk reduced
+### Risk: Performance Impact (Zero-Trust)
+**Mitigation**:
+- Implement caching (reduce auth latency)
+- Use efficient authentication (mutual TLS)
+- Test performance with production load
+- Monitor latency post-deployment
 
-</div>
+### Risk: Operational Complexity (Managing New Model)
+**Mitigation**:
+- Invest in policy management tools
+- Automate common tasks (IaC, CI/CD)
+- Train operations team on new model
+- Build tribal knowledge (documentation)
 
-<div style="background-color: #FFEBEE; padding: 15px; border-radius: 5px; margin: 10px 0">
-
-**❌ Cons**:
-- 🔴 Two security models to operate
-- 🔴 Transition period is long
-- 🔴 Complexity during transition
-
-</div>
-
-**⚠️ When It Fails**: Legacy systems never upgrade. Dual systems become permanent.
-
----
-
-## 🏛️ How Network Security Fits Your Principles
-
-<table>
-<tr>
-<th style="background-color: #1976D2; color: white">Principle</th>
-<th style="background-color: #FF9800; color: white">Optimization</th>
-<th style="background-color: #2196F3; color: white">Micro-Seg</th>
-<th style="background-color: #9C27B0; color: white">Full Zero-Trust</th>
-<th style="background-color: #4CAF50; color: white">Hybrid</th>
-</tr>
-<tr>
-<td style="background-color: #1976D2; color: white"><strong>Security & Identity</strong></td>
-<td style="background-color: #FFEBEE">Perimeter</td>
-<td style="background-color: #E3F2FD">Segment-based</td>
-<td style="background-color: #F3E5F5">Identity-based ✅✅</td>
-<td style="background-color: #E8F5E9">Mixed</td>
-</tr>
-<tr>
-<td style="background-color: #1976D2; color: white"><strong>Observability & Governance</strong></td>
-<td style="background-color: #FFEBEE">Limited</td>
-<td style="background-color: #E3F2FD">✅</td>
-<td style="background-color: #F3E5F5">✅✅</td>
-<td style="background-color: #E8F5E9">✅</td>
-</tr>
-<tr>
-<td style="background-color: #1976D2; color: white"><strong>Cloud-Agnostic Resilience</strong></td>
-<td style="background-color: #FFEBEE">Network-dependent</td>
-<td style="background-color: #E3F2FD">Network-dependent</td>
-<td style="background-color: #F3E5F5">✅✅ Cloud-agnostic</td>
-<td style="background-color: #E8F5E9">Mixed</td>
-</tr>
-<tr>
-<td style="background-color: #1976D2; color: white"><strong>Future-Ready</strong></td>
-<td style="background-color: #FFEBEE">❌ (legacy model)</td>
-<td style="background-color: #E3F2FD">✅ (modern)</td>
-<td style="background-color: #F3E5F5">✅✅ (cloud-native)</td>
-<td style="background-color: #E8F5E9">✅</td>
-</tr>
-</table>
+### Risk: Legacy System Incompatibility (Zero-Trust)
+**Mitigation**:
+- Hybrid pattern (zero-trust + legacy)
+- Gateway between old & new
+- Phased migration (not big-bang)
+- Long-term support for legacy (5+ years)
 
 ---
 
-## 🔗 How This Repo Connects To The Other Repos
+## 🧩 Reusable Architecture Patterns
 
-**This repo answers: 🎯 HOW to secure the network (wherever workloads run)**
+### Micro-Segmentation Pattern: By Function
+```
+┌──────────────────┐
+│   Internet       │
+└────────┬─────────┘
+         │
+    ┌────▼────┐
+    │ Perimeter
+    │ Firewall │
+    └────┬────┘
+         │
+    ┌────▼──────────┬──────────────┬──────────┐
+    │                │              │          │
+┌───▼────┐    ┌─────▼────┐  ┌─────▼────┐  ┌──▼───┐
+│ User    │    │ App      │  │ Database │  │Cache │
+│ Segment │◄──►│ Segment  │◄─┤ Segment  │◄─┤Seg   │
+└─────────┘    └──────────┘  └──────────┘  └──────┘
+   ↓                ↓              ↓
+ Admin  &    Monitoring        Audit Log
+ Logging   & Alerting
+```
 
-**Layers of Security**:
-- 📍 [REPO 1: Where workloads run](https://github.com/XtraTree/01-Hybrid-Multi-Cloud-Blueprints) → Deployment architecture
-- **🛡️ REPO 2: How network is secured** → This repo (network-layer)
-- 🔐 [REPO 3: How identity is verified](https://github.com/XtraTree/03-Zero-Trust-Security) → Identity-layer
-- ⚖️ [REPO 4: How policies are enforced](https://github.com/XtraTree/04-Cloud-Native-Governance) → Governance
+### Zero-Trust Pattern: Identity-Centric
+```
+Client                    Service
+┌────────┐              ┌─────────┐
+│ mTLS   │─────────────►│ Verify  │
+│Cert    │ with Subject │ Cert    │
+│ ID     │              │ Identity│
+└────────┘              └────┬────┘
+                              │
+                         Authorized?
+                              │
+                         ┌────▼─────┐
+                         │ Grant     │
+                         │ Access    │
+                         └───────────┘
+```
 
-**Example integration**: Hybrid architecture (REPO 1) needs:
-1. Secure network (REPO 2) → Hybrid network design
-2. Verify identity (REPO 3) → Identity federation
-3. Enforce policy (REPO 4) → Compliance automation
-
----
-
-## 📚 What This Repo Includes
-
-| Document | Purpose |
-|----------|---------|
-| **[ARCHITECTURE.md](./ARCHITECTURE.md)** | 🏗️ Zero-trust design, DMZ hardening, firewall rules |
-| **[CASE_STUDIES/](./CASE_STUDIES/)** | 📊 Bank, healthcare, enterprise examples |
-| **[IMPLEMENTATION/](./IMPLEMENTATION/)** | 🚀 Getting started, firewall templates, NAC, monitoring |
-| **[LESSONS_LEARNED.md](./LESSONS_LEARNED.md)** | 💡 Pitfalls, operations guidance, best practices |
-
----
-
-## ⚡ Quick Start
-
-<div style="background-color: #FFEBEE; padding: 15px; border-radius: 5px; margin: 10px 0">
-
-**If you need firewall cleanup** 🧹:
-1. 👆 Read [Perimeter Optimization](#pattern-1️⃣-perimeter-optimization-)
-2. 📚 See [Bank Case Study](./CASE_STUDIES/bank.md)
-3. 📋 Check [IMPLEMENTATION/](./IMPLEMENTATION/) templates
-
-</div>
-
-<div style="background-color: #E3F2FD; padding: 15px; border-radius: 5px; margin: 10px 0">
-
-**If you need zero-trust** 🔒:
-1. 👆 Read [Full Zero-Trust Pattern](#pattern-3️⃣-full-zero-trust-identity-centric-)
-2. 📚 See [Healthcare Case Study](./CASE_STUDIES/healthcare.md)
-3. 🔗 Link to [REPO 3 Zero-Trust Security](https://github.com/XtraTree/03-Zero-Trust-Security)
-4. 📋 Check [IMPLEMENTATION/](./IMPLEMENTATION/) deployment
-
-</div>
-
-<div style="background-color: #F3E5F5; padding: 15px; border-radius: 5px; margin: 10px 0">
-
-**If you need DMZ hardening** 🏢:
-1. 📋 See [IMPLEMENTATION/](./IMPLEMENTATION/) for CIS checklist
-2. 📖 Read [Lessons Learned](./LESSONS_LEARNED.md) for mistakes to avoid
-
-</div>
-
-<div style="background-color: #E8F5E9; padding: 15px; border-radius: 5px; margin: 10px 0">
-
-**If you want integrated architecture** 🔗:
-1. 🔗 See [How This Repo Connects](#-how-this-repo-connects-to-the-other-repos)
-2. 🔐 Jump to [REPO 3](https://github.com/XtraTree/03-Zero-Trust-Security) or ⚖️ [REPO 4](https://github.com/XtraTree/04-Cloud-Native-Governance)
-
-</div>
+### Hybrid Pattern: Legacy + Zero-Trust
+```
+Legacy Network          Zero-Trust Network
+┌──────────────┐       ┌─────────────────┐
+│ App 1        │       │ Microservice A  │
+│ App 2        │       │ Microservice B  │
+│ (Perim-Based)│◄──►   │ (Identity-Based)│
+└──────────────┘  GW   └─────────────────┘
+                 (Auth Translation)
+```
 
 ---
 
 ## ❓ Key Questions This Repo Answers
 
-- ✅ Should we consolidate rules or rearchitect network?
-- ✅ What's the difference between segmentation and zero-trust?
-- ✅ How do we harden a DMZ securely?
-- ✅ How does network support zero-trust?
-- ✅ What's the ROI of network modernization?
-- ✅ How do we avoid major disruptions?
-
----
-
-## 📊 Quick Reference: Impact by Pattern
-
-| Metric | Optimization | Micro-Seg | Full Zero-Trust |
-|--------|--------------|-----------|-----------------|
-| **Rules Reduction** | 30-50% | 40-60% | 70-90% |
-| **Incident Response** | 20-30% ↑ | 50-70% ↑ | 80-90% ↑ |
-| **Compliance Overhead** | Minimal | Significant | Automated ✅ |
-| **Lateral Movement** | ❌ | ✅✅ | ✅✅ |
-| **Legacy Support** | ✅✅ | ✅ | Limited |
+- ✅ When should we move from perimeter to zero-trust?
+- ✅ What's the right network modernization pattern for us?
+- ✅ How do we handle legacy systems during transition?
+- ✅ What's the cost & complexity of each pattern?
+- ✅ How do we implement micro-segmentation?
+- ✅ How do we migrate from MPLS to SD-WAN?
+- ✅ How do we secure a zero-perimeter network?
+- ✅ What's the cutover strategy?
 
 ---
 
 ## 🤝 Contributing
 
-Have a firewall question? Found an issue?
+Found an issue? Want to share a pattern?
 
 [🐛 Open an issue](../../issues) | [💬 Start a discussion](../../discussions)
 
 ---
 
-## 📄 License
+<div style="background-color: #E3F2FD; padding: 20px; border-radius: 5px; margin-top: 20px; text-align: center">
 
-This work is shared to advance network security thinking.
+**Network security is evolving from perimeter-based to identity-centric.**
 
-Use these patterns for your organization. Build on them. Share your lessons.
-
----
-
-<div style="background-color: #E3F2FD; padding: 15px; border-radius: 5px; margin-top: 20px; text-align: center">
-
-**Made with ❤️ for Network & Security Architects**
+Get the identity architecture right, and zero-trust becomes achievable.
 
 ⭐ If this helps, please star the repo!
+
+**Made with ❤️ for Enterprise Architects**
+
+Modern network architecture for a zero-perimeter world.
 
 </div>
