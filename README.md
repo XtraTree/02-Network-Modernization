@@ -4,7 +4,6 @@
 
 [![Network Security](https://img.shields.io/badge/Network%20Security-Zero%20Trust-red)](.)
 [![Architecture](https://img.shields.io/badge/Architecture-Modern-blue)](.)
-[![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
 [![Status](https://img.shields.io/badge/Status-Active-brightgreen)](.)
 
 ---
