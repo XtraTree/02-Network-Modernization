@@ -1,4 +1,4 @@
-# 🔐 Network Modernization: Zero-Trust Architecture
+# 🌐 Network Modernization: Zero-Trust Architecture
 
 > **Strategic Question**: How do you secure a network when the perimeter no longer exists?
 
